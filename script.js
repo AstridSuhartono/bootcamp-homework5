@@ -4,29 +4,27 @@ $(document).ready(function() {
     currentTime =  moment().format('LLLL');
     $("#currentDay").text(currentTime);
 
-    var timeArray = [
-        {time: "9", format: "9 AM"},
-        {time: "10", format: "10 AM"},
-        {time: "11", format: "11 AM"},
-        {time: "12", format: "12 PM"},
-        {time: "13", format: "1 PM"},
-        {time: "14", format: "2 PM"},
-        {time: "15", format: "3 PM"},
-        {time: "16", format: "4 PM"},
-        {time: "17", format: "5 PM"},
-    ]
+    //create an array of time
+    var timeArray = ["9 AM","10 AM","11 AM", "12 PM", "1 PM","2 PM","3 PM","4 PM","5 PM"]
 
     //create the time blocks
     for (var i = 0; i <= timeArray.length; i++){
         let $timeBlock = $("<div></div>").addClass("time-block row");
+        let $timeArea = $("<div></div>").addClass("hour col-2").text(timeArray[i]).attr("data-value",i + 9);
+        let $textArea = $("<textarea></textarea>").addClass("description col-9");
+        let $button = $("<button></button>").addClass("saveBtn col-1");
+        let $saveIcon = $("<i></i>").addClass("fas fa-save fa-lg");
         $(".container").append($timeBlock);
+        $timeBlock.append($timeArea,$textArea,$button);
+        $button.append($saveIcon);
+        
+        changeRowColour();
     }
 
-    //format diplay time
-    let displayTime = 0;
-    let periodFormat = "";
-   
-    //create an array of time
+    //update the colour of the time block
+    function changeRowColour(){
+
+    }
 
     //get stored JSON string of toDo from local storage and parsing it back to an object
     let toDo = JSON.parse(localStorage.getItem("toDo"));
