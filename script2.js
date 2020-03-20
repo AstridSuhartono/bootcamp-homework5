@@ -53,9 +53,10 @@ $(document).ready(function() {
                 todosArray = storedTodos;
             } else{
                 todosArray = new Array();
+
+                // JL COMMENT: Create your json file on local storage if not storedTodos empty
                 storeTodos();
             }
-
             renderTimeBlocks();
         }
 
@@ -67,15 +68,25 @@ $(document).ready(function() {
       }
 
     //when button is clicked
+
+    // JL COMMENT: use .saveButton because your button class name is saveBtn 
     $(".saveBtn").on("click",function(event){
+
         event.preventDefault(); 
-        let index = $(this).attr("data-btnIndex");  
+        let index = $(this).attr("data-btnIndex");
+        // JL COMMENT:  
+        console.log(".input"+index);
         let todoText = $(".input"+index).val();
+        console.log("index: " + index + " todotext: " + todoText);
+        
+        // Return from function early if submitted todoText is blank
+        // if (todoText === "") {
+        //     return;
+        // }
 
         // Add new todoText to todos array
         todosArray[index] = todoText;
         console.log(todosArray);
-        
         // Store updated todos in localStorage
         storeTodos();
         renderTimeBlocks();
