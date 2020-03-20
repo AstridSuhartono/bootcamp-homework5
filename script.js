@@ -27,7 +27,7 @@ $(document).ready(function() {
             //set the colour of the text area
             setRowColour(textArea,i);
 
-            textArea.text = todosArray[i];
+            textArea.text(todosArray[index]);
 
         }
     }
