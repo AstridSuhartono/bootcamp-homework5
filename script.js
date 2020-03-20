@@ -17,7 +17,7 @@ $(document).ready(function() {
             let index = i - 9;
             let timeBlock = $("<div></div>").addClass("time-block row");
             let timeArea = $("<div></div>").addClass("hour col-2").text(timeArray[index]);
-            let textArea = $("<textarea></textarea>").addClass("description col-9 input"+index).text("");
+            let textArea = $("<textarea></textarea>").addClass("input" + index + " description col-9").text("");
             let button = $("<button></button>").addClass("saveBtn col-1").attr("data-btnIndex", index);
             let saveIcon = $("<i></i>").addClass("fas fa-save fa-2x");
             $(".container").append(timeBlock);
@@ -47,35 +47,44 @@ $(document).ready(function() {
         // Get stored todos from localStorage
         // Parsing the JSON string to an object
             var storedTodos = JSON.parse(localStorage.getItem("todos"));
-        
+
             // If todos were retrieved from localStorage, update the todos array to it
             if (storedTodos !== null) {
                 todosArray = storedTodos;
             } else{
                 todosArray = new Array();
-            }
 
+                // JL COMMENT: Create your json file on local storage if not storedTodos empty
+                storeTodos();
+            }
             renderTimeBlocks();
         }
 
 
     function storeTodos() {
+        console.log("Create");
         // Stringify and set "todos" key in localStorage to todos array
         localStorage.setItem("todos", JSON.stringify(todosArray));
       }
 
     //when button is clicked
-    $(".button").on("click",function(event){
+
+    // JL COMMENT: use .saveButton because your button class name is saveBtn 
+    $(".saveBtn").on("click",function(event){
+
         event.preventDefault(); 
         let index = $(this).attr("data-btnIndex");
-        let todoText = $(".input"+index).text();
+        // JL COMMENT:  
+        console.log(".input"+index);
+        let todoText = $(".input"+index).val();
+        console.log("index: " + index + " todotext: " + todoText);
         // Return from function early if submitted todoText is blank
         if (todoText === "") {
             return;
         }
         // Add new todoText to todos array
         todosArray[index] = todoText;
-
+        console.log(todosArray);
         // Store updated todos in localStorage
         storeTodos();
         renderTimeBlocks();
