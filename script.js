@@ -78,7 +78,6 @@ $(document).ready(function() {
         
         // Store updated todos in localStorage
         storeTodos();
-        renderTimeBlocks();
 
     });
 
