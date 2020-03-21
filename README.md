@@ -13,7 +13,7 @@ A simple web calendar application that allows the user to save events for each h
 
 ### Video Recording
 
-Click the following link to see the video demo:
+Click the following link to see the video demo: https://drive.google.com/file/d/12B8Gl3g_RTf1UHcQFE6gbXld_SXymFgF/view
 
 ### Build Instructions
 
